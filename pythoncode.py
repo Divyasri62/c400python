@@ -1,7 +1,13 @@
 import csv
+import requests
+url = "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
 total_records = 0
 unique_boroughs = set()
 brooklyn_count = 0
+
+response = requests.get(url)
+with open('taxi_zone_lookup.csv', 'wb') as file:
+    file.write(response.content)
 
 with open('taxi_zone_lookup.csv', 'r') as file:
     reader = csv.DictReader(file)
